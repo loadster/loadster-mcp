@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Help connecting an agent or using the Loadster MCP server
+    url: mailto:help@loadster.com
+    about: Setup problems, account questions, feature requests, and anything about the hosted server go to Loadster support.
+  - name: Loadster manual, AI Agents chapter
+    url: https://loadster.com/manual/ai-agents/
+    about: Current setup steps for Claude, ChatGPT, Codex, Cursor, VS Code, and other clients.
+  - name: Report a security issue
+    url: https://loadster.com/legal/vulnerability-disclosure-policy/
+    about: Please don't file security reports as public issues. Email security@loadster.com instead.

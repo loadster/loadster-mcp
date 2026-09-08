@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "loadster": {
+      "type": "http",
+      "url": "https://api.loadster.com/mcp"
+    }
+  }
+}

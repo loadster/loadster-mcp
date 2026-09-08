@@ -1,0 +1,22 @@
+{
+  "name": "loadster",
+  "displayName": "Loadster",
+  "version": "1.0.0",
+  "description": "Load testing and monitoring with Loadster: write and play scripts, build load test scenarios, set up monitors, and analyze results.",
+  "author": {
+    "name": "Loadster",
+    "email": "help@loadster.com",
+    "url": "https://loadster.com"
+  },
+  "homepage": "https://loadster.com/manual/ai-agents/",
+  "repository": "https://github.com/loadster/loadster-mcp",
+  "license": "MIT",
+  "keywords": [
+    "load-testing",
+    "performance-testing",
+    "stress-testing",
+    "monitoring",
+    "playwright",
+    "loadster"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "loadster",
+  "description": "Loadster's Claude Code plugin: connect Claude to the Loadster MCP server for load testing and monitoring.",
+  "owner": {
+    "name": "Loadster",
+    "email": "help@loadster.com",
+    "url": "https://loadster.com"
+  },
+  "plugins": [
+    {
+      "name": "loadster",
+      "displayName": "Loadster",
+      "source": "./",
+      "description": "Load testing and monitoring with Loadster: write and play scripts, build load test scenarios, set up monitors, and analyze results.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Loadster"
+      },
+      "homepage": "https://loadster.com/manual/ai-agents/",
+      "repository": "https://github.com/loadster/loadster-mcp",
+      "license": "MIT",
+      "category": "testing",
+      "tags": ["load-testing", "performance-testing", "monitoring", "playwright"]
+    }
+  ]
+}
