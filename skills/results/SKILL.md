@@ -1,5 +1,5 @@
 ---
-name: loadster-results
+name: results
 description: Analyze a finished Loadster load test or a monitor incident. Read the report, find the bottleneck or failure, explain it in plain terms, and record notes. Use when the user asks what happened in a load test, whether a test passed, why a monitor is failing, or what an incident means.
 ---
 

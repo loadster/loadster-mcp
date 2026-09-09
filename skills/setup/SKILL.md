@@ -1,5 +1,5 @@
 ---
-name: loadster-setup
+name: setup
 description: Connect Claude Code to Loadster's MCP server and verify the connection. Use when Loadster tools are missing, a Loadster tool returns 401 or unauthorized, or the user asks to set up, connect, or reconnect Loadster.
 ---
 
