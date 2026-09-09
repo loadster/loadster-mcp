@@ -1,8 +1,8 @@
 {
   "name": "loadster",
   "displayName": "Loadster",
-  "version": "1.0.0",
-  "description": "Load testing and monitoring with Loadster: write and play scripts, build load test scenarios, set up monitors, and analyze results.",
+  "version": "1.0.1",
+  "description": "Loadster load testing and synthetic monitoring integration. Write and play load test scripts with Playwright or real browsers at scale, build scenarios, set up monitors, and analyze results, while you launch the tests. Connects over OAuth: run /mcp after installing.",
   "author": {
     "name": "Loadster",
     "email": "help@loadster.com",
