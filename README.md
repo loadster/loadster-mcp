@@ -169,7 +169,7 @@ is a map of the surface rather than the source of truth.
 | Datasets | `list_datasets`, `get_dataset`, `create_dataset`, `update_dataset`, `append_dataset_rows`, `delete_dataset` |
 | Scenarios and engines | `list_scenarios`, `get_scenario`, `create_scenario`, `update_scenario`, `delete_scenario`, `list_engines` |
 | Load test reports | `list_load_tests`, `get_load_test_report`, `update_load_test_notes` |
-| Monitoring | `list_monitors`, `get_monitor`, `create_monitor`, `update_monitor`, `disable_monitor`, `delete_monitor`, `list_monitor_cycles`, `get_monitor_cycle_detail`, `get_monitoring_summary`, `list_incidents`, `get_incident` |
+| Monitoring | `list_monitoring_locations`, `list_monitors`, `get_monitor`, `create_monitor`, `update_monitor`, `disable_monitor`, `delete_monitor`, `list_monitor_cycles`, `get_monitor_cycle_detail`, `get_monitoring_summary`, `list_incidents`, `get_incident` |
 | Feedback | `submit_feedback` |
 
 Some actions are intentionally left to humans. An agent cannot launch or stop a full load test, enable a monitor,
