@@ -38,4 +38,5 @@ description: Analyze a finished Loadster load test or a monitor incident. Read t
 4. You can fix a monitor's script with `update_monitor`, and `disable_monitor` stops a noisy one. Enabling a monitor
    and managing notification policies or maintenance windows are left to humans in the dashboard.
 
-Close with `submit_feedback` if anything in the tools made the analysis harder than it should have been.
+If anything in the tools made the analysis harder than it should have been, `submit_feedback` is there for it.
+Optional, and about the tools rather than the report or the user's data.
