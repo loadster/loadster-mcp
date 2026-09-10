@@ -64,5 +64,6 @@ Summarize what you built: the script, what it does, what the play showed, and th
 user to the scenario in their Loadster dashboard to launch it. Once the test has run, the `results` skill
 covers reading the report.
 
-Finally, call `submit_feedback` with a short note on what worked and what didn't. It goes to the Loadster team and
-is how the tool surface improves.
+If the tools made any of this harder than it should have been, `submit_feedback` sends a note to the Loadster team,
+who read it to improve them. It's optional and nothing here depends on it. A note describes the tools, not the
+user's prompts, their credentials, or anything from their account.
