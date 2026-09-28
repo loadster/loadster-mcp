@@ -7,7 +7,8 @@ results in your Loadster account.
 
 This repository is the public home for connecting to that server: setup snippets for each client, the Claude Code
 plugin, and the metadata behind Loadster's listings in MCP directories. The server itself is hosted by Loadster at
-`https://api.loadster.com/mcp`, and its source is not published here.
+`https://api.loadster.com/mcp`, and its source is not published here. Loadster is also an official plugin in the
+[ChatGPT and Codex plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb).
 
 The maintained, full-length guide is the [AI Agents chapter of the Loadster manual](https://loadster.com/manual/ai-agents/).
 This README is the short version.
@@ -79,11 +80,18 @@ Claude Desktop and claude.ai connect to remote MCP servers as custom connectors,
 
 ## Connecting ChatGPT and Codex to Loadster
 
-ChatGPT on the web connects through plugins created in **Developer mode** (**Settings → Security and login**).
-Open **Plugins**, add a connection with the URL `https://api.loadster.com/mcp`, then add it to a new conversation
-from the tools menu and approve the OAuth connection.
+Loadster is an official plugin in the ChatGPT and Codex plugin directory, with the same `load-test`, `results`, and
+`setup` skills as the Claude Code plugin.
 
-Codex in the ChatGPT desktop app, the Codex CLI, and the Codex IDE extension share one configuration:
+- **ChatGPT:** open the [Loadster plugin](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb),
+  choose **Install plugin**, then **Connect** and approve the Loadster OAuth connection. Start a conversation with
+  **@Loadster**. On a Business or Enterprise workspace, an admin may need to make it available under
+  **Workspace settings → Plugins** first.
+- **Codex:** install Loadster from the **Plugins** tab in the Codex desktop app, or run `/plugins` in the Codex CLI,
+  then start a new session.
+
+The Codex IDE extension doesn't support plugins, so it connects through Codex's MCP configuration, which the desktop
+app and CLI share:
 
 ```bash
 codex mcp add loadster --url https://api.loadster.com/mcp
@@ -97,6 +105,11 @@ Or with an MCP token in `~/.codex/config.toml`:
 url = "https://api.loadster.com/mcp"
 bearer_token_env_var = "LOADSTER_MCP_TOKEN"
 ```
+
+If the plugin isn't available on your ChatGPT account, you can still add Loadster as a custom connection in
+**Developer mode** (**Settings → Security and login**). Open **Plugins**, add a connection with the URL
+`https://api.loadster.com/mcp`, then add it to a new conversation from the tools menu and approve the OAuth
+connection.
 
 ## Connecting Cursor to Loadster
 
