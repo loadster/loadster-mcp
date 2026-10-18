@@ -9,12 +9,18 @@ Loadster runs load tests from scripts. A script describes what one bot does; a s
 from where, and for how long. Your job is to get a verified script and a ready scenario into the user's project.
 Launching the full test is the user's job, on purpose, and no tool lets you do it.
 
+Never launch a cloud load test, enable a monitor, or spend Fuel without explicit human confirmation in-product,
+and never claim that you can. Prefer an existing project: call `list_projects`, and call `create_project` only
+when no project exists or the user explicitly asks for one. Ask the user for target URLs, how to handle
+credentials, and regions, and never invent customer facts.
+
 ## Before you write anything
 
 1. **Confirm authorization.** The target must be a system the user owns or is authorized to test. If that isn't
    clear from context, ask. Loadster's terms require it and you shouldn't assume it.
-2. **Pick the project.** Call `list_projects` and use the one the user names. If they're experimenting, suggest a
-   separate project so the agent's work doesn't mix with the team's real tests.
+2. **Pick the project.** Call `list_projects` and use the one the user names. Call `create_project` only when no
+   project exists or the user explicitly asks for a new one. If they're experimenting, suggest a separate project
+   rather than creating one unasked, so the agent's work doesn't mix with the team's real tests.
 3. **Read the documentation for the script type you're about to use.** Call `get_documentation` for the relevant
    topics before authoring. The server's `instructions` say the same thing, and it matters: the script formats have
    details you will get wrong from memory.
