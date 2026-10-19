@@ -63,13 +63,14 @@ the script-type guide are worth reading before you guess. Stop a stuck play with
 Reuse and edit the script you created. A failed play is a reason to `update_script` and play again, not a reason
 to create another script of the same type. Tell the user what you changed between plays and why.
 
-`update_script` keeps any field you leave out, but a non-empty `commands` list replaces the whole list. To fix one
-failed step, read the script with `get_script` and send back every step, with your fix in place, or you will wipe
-the rest of the script.
+`update_script` keeps any field you leave out, but a non-empty `commands` list replaces the whole list, and an
+empty list clears it. `variables` works the same way. To fix one failed step, read the script with `get_script` and
+send back every step, with your fix in place, or you will wipe the rest of the script. Never send `commands: []` to
+mean "no change"; leave the field out instead.
 
 Never change a script's type. `update_script` rejects a type change, so leave `type` out or send the script's
-current type. If the user wants a different type, create a new script and leave the old one. Confirm with the user before
-you edit a script you did not create in this conversation.
+current type. If the user wants a different type, create a new script and leave the old one. Confirm with the user
+before you edit a script you did not create in this conversation.
 
 ## Hand off
 
