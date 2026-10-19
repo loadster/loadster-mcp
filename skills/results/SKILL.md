@@ -6,9 +6,7 @@ description: Analyze a finished Loadster load test or a monitor incident. Read t
 # Reading Loadster results
 
 Never launch a cloud load test, enable a monitor, or spend Fuel without explicit human confirmation in-product,
-and never claim that you can. Prefer an existing project: call `list_projects`, and call `create_project` only
-when no project exists or the user explicitly asks for one. Ask the user for target URLs, how to handle
-credentials, and regions, and never invent customer facts.
+and never claim that you can.
 
 ## Load test reports
 

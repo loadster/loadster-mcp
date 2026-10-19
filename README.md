@@ -82,8 +82,9 @@ Claude Desktop and claude.ai connect to remote MCP servers as custom connectors,
 
 ## Connecting ChatGPT and Codex to Loadster
 
-Loadster is an official plugin in the ChatGPT and Codex plugin directory, with the same `setup`, `setup-script`,
-`setup-scenario`, `setup-monitor`, `load-test`, and `results` skills as the Claude Code plugin.
+Loadster is an official plugin in the ChatGPT and Codex plugin directory, with the `setup`, `load-test`, and
+`results` skills. The new `setup-script`, `setup-scenario`, and `setup-monitor` skills reach it when the directory
+listing is updated.
 
 - **ChatGPT:** open the [Loadster plugin](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb),
   choose **Install plugin**, then **Connect** and approve the Loadster OAuth connection. Start a conversation with

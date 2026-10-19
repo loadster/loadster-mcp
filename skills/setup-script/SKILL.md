@@ -14,7 +14,7 @@ play is one bot running the script once. It is not a load test.
   and never claim that you can.
 - Prefer an existing project. Call `list_projects`, and call `create_project` only when no project exists or the
   user explicitly asks for one.
-- Ask the user for target URLs, how to handle credentials, and regions. Never invent customer facts.
+- Ask the user for target URLs and how to handle credentials. Never invent customer facts.
 
 ## Choose the type
 
@@ -36,10 +36,10 @@ Call `list_projects` and use the project the user names. Call `create_project` o
 user explicitly asks for a new project. Ask what to name it, and do not invent a name. If `create_project` is not
 on the server, ask them to create the project in the dashboard, then call `list_projects` again.
 
-Ask for the target URL, how credentials should be handled, and which region they want for a later scenario or
-monitor, before you write a step. Do not invent a host, username, password, API key, token, or region. If they
-do not want credentials stored in the project, say what the script cannot check without them and wait. A script
-does not select a load region itself. Keep the region they name for `setup-scenario` or `setup-monitor`.
+Ask for the target URL and how credentials should be handled before you write a step. Do not invent a host,
+username, password, API key, or token. If they do not want credentials stored in the project, say what the script
+cannot check without them and wait. A script does not use a region, so don't ask for one here. `setup-scenario`
+and `setup-monitor` ask when the user moves on to them.
 
 ## Create or import
 
@@ -63,8 +63,8 @@ the script-type guide are worth reading before you guess. Stop a stuck play with
 Reuse and edit the script you created. A failed play is a reason to `update_script` and play again, not a reason
 to create another script of the same type. Tell the user what you changed between plays and why.
 
-Never change a script's type. `update_script` can replace the type, but you must send the type the script already
-has. If the user wants a different type, create a new script and leave the old one. Confirm with the user before
+Never change a script's type. `update_script` rejects a type change, so send the script's current type. If the
+user wants a different type, create a new script and leave the old one. Confirm with the user before
 you edit a script you did not create in this conversation.
 
 ## Hand off
