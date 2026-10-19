@@ -5,6 +5,9 @@ description: Analyze a finished Loadster load test or a monitor incident. Read t
 
 # Reading Loadster results
 
+Never launch a cloud load test, enable a monitor, or spend Fuel without explicit human confirmation in-product,
+and never claim that you can.
+
 ## Load test reports
 
 1. Find the test with `list_load_tests` (filter to the user's project) and fetch it with `get_load_test_report`.

@@ -33,8 +33,10 @@ password.
 
 ## Connecting Claude Code to Loadster
 
-The quickest way is the plugin from this repository, which adds the Loadster MCP server plus a few skills that
-encode a sensible load testing workflow:
+The quickest way is the plugin from this repository, which adds the Loadster MCP server plus skills for a
+sensible load testing workflow: `setup` to connect, `setup-script` for a first script, `setup-scenario` for a
+first load test scenario, `setup-monitor` for a first synthetic monitor, `load-test` for a full test, and
+`results` for reading what happened.
 
 ```
 /plugin marketplace add loadster/loadster-mcp
@@ -80,8 +82,9 @@ Claude Desktop and claude.ai connect to remote MCP servers as custom connectors,
 
 ## Connecting ChatGPT and Codex to Loadster
 
-Loadster is an official plugin in the ChatGPT and Codex plugin directory, with the same `load-test`, `results`, and
-`setup` skills as the Claude Code plugin.
+Loadster is an official plugin in the ChatGPT and Codex plugin directory, with the `setup`, `load-test`, and
+`results` skills. The new `setup-script`, `setup-scenario`, and `setup-monitor` skills reach it when the directory
+listing is updated.
 
 - **ChatGPT:** open the [Loadster plugin](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb),
   choose **Install plugin**, then **Connect** and approve the Loadster OAuth connection. Start a conversation with
@@ -177,7 +180,7 @@ is a map of the surface rather than the source of truth.
 
 | Group | Tools |
 | --- | --- |
-| Projects and documentation | `list_projects`, `get_documentation`, `get_scripting_api`, `get_example`, `list_command_types`, `get_command_schema`, `get_variable_schema` |
+| Projects and documentation | `list_projects`, `create_project`, `get_documentation`, `get_scripting_api`, `get_example`, `list_command_types`, `get_command_schema`, `get_variable_schema` |
 | Scripts | `list_scripts`, `get_script`, `create_script`, `update_script`, `duplicate_script`, `delete_script`, `import_script`, `validate_script`, `play_script`, `get_play_status`, `stop_script`, `get_step_detail`, `get_screenshot`, `list_script_revisions`, `get_script_revision`, `restore_script_revision`, `list_script_assets`, `get_script_asset`, `put_script_asset`, `delete_script_asset` |
 | Datasets | `list_datasets`, `get_dataset`, `create_dataset`, `update_dataset`, `append_dataset_rows`, `delete_dataset` |
 | Scenarios and engines | `list_scenarios`, `get_scenario`, `create_scenario`, `update_scenario`, `delete_scenario`, `list_engines` |
@@ -214,7 +217,7 @@ clients that honor them can prompt before writes and deletes.
 | --- | --- |
 | `server.json` | Loadster's entry in the [official MCP Registry](https://registry.modelcontextprotocol.io/) |
 | `glama.json` | Maintainer metadata for the [Glama](https://glama.ai/mcp/servers) listing |
-| `.claude-plugin/`, `.mcp.json`, `skills/` | The Claude Code plugin and its marketplace manifest |
+| `.claude-plugin/`, `.mcp.json`, `skills/` | The Claude Code plugin, its marketplace manifest, and the `setup`, `setup-script`, `setup-scenario`, `setup-monitor`, `load-test`, and `results` skills |
 | `.github/workflows/` | Validation on every push, and registry publishing on release |
 
 ## License
