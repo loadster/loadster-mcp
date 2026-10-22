@@ -176,7 +176,9 @@ Leave out the `--header` arguments to have it run the OAuth flow instead of usin
 ## What an agent can do with Loadster
 
 The server exposes most of the Loadster dashboard. Clients fetch the live tool list when they connect, so this table
-is a map of the surface rather than the source of truth.
+is a map of the surface rather than the source of truth. The [MCP tool reference](https://loadster.com/manual/mcp-tools/)
+in the Loadster manual is generated from the tool definitions themselves, with each tool's parameters and whether it
+is a Read, Write, or Sensitive write.
 
 | Group | Tools |
 | --- | --- |
