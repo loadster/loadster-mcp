@@ -205,7 +205,10 @@ clients that honor them can prompt before writes and deletes.
 - **Only test what's yours.** Point scripts only at systems you own or are authorized to test. Playing a script runs
   a single bot, but it's your responsibility either way.
 - **Scope your access.** Use one token per agent or machine, name them clearly, and revoke any you no longer use.
-  Review OAuth connections on the AI Agents page.
+  If an agent only needs to read, choose **Read only** instead of **Full access** when you approve the OAuth
+  connection (the `mcp:read` scope), or check **Read only** when you create a token. It can then use only the tools
+  that read, and can't change anything or play scripts. Review OAuth connections on the **API & MCP** page in your
+  Loadster settings. See [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
 
 ## Support
 
