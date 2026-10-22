@@ -15,8 +15,8 @@ encourages an unsafe practice) can go to the same address.
 
 ## Tokens and connections
 
-- MCP tokens act as the user who created them, within that team. Treat them like passwords, use one per agent or
-  machine, and revoke unused tokens under **Settings → API & MCP** in the Loadster dashboard.
+- Personal access tokens act as the user who created them, within that team. Treat them like passwords, use one per
+  agent or machine, and revoke unused tokens under **Settings → API & MCP** in the Loadster dashboard.
 - OAuth connections can be reviewed and revoked on the same page.
 - Never commit a token to a repository. The snippets here use placeholders, environment variables, or editor-managed
   secret inputs for that reason.

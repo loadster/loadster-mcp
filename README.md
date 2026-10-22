@@ -11,7 +11,8 @@ plugin, and the metadata behind Loadster's listings in MCP directories. The serv
 [ChatGPT and Codex plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb).
 
 The maintained, full-length guide is the
-[AI Assistants & MCP chapter of the Loadster manual](https://loadster.com/manual/mcp/). This README is the short version.
+[AI Assistants & MCP chapter of the Loadster manual](https://loadster.com/manual/mcp/).
+This README is the short version.
 
 ## The Loadster MCP endpoint
 
@@ -19,17 +20,18 @@ The maintained, full-length guide is the
 | --- | --- |
 | URL | `https://api.loadster.com/mcp` |
 | Transport | Streamable HTTP |
-| Authentication | OAuth 2.1 (preferred), or an MCP token in an `Authorization: Bearer` header |
+| Authentication | OAuth 2.1 (preferred), or a personal access token in an `Authorization: Bearer` header |
 | Registry name | `com.loadster/loadster-mcp` |
 
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
 connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your Loadster
 settings.
 
-**MCP tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. Create one in the Loadster
-dashboard under **Settings → API & MCP → Personal Access Tokens**, copy it right away (it's only shown once), and
-send it as `Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team where you created it, so treat it
-like a password.
+**Personal access tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. The same kind of
+token also works for calling the [Loadster REST API](https://loadster.com/manual/rest-api/) directly. Create one in
+the Loadster dashboard under **Settings → API & MCP → Personal Access Tokens**, copy it right away (it's only shown
+once), and send it as `Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team where you created it, so
+treat it like a password.
 
 ## Connecting Claude Code to Loadster
 
@@ -52,7 +54,7 @@ Without the plugin, add the server directly and Claude Code will walk you throug
 claude mcp add --transport http loadster https://api.loadster.com/mcp
 ```
 
-Or with an MCP token, for headless use:
+Or with a personal access token, for headless use:
 
 ```bash
 claude mcp add --transport http loadster https://api.loadster.com/mcp --header "Authorization: Bearer YOUR_TOKEN"
@@ -101,7 +103,7 @@ codex mcp add loadster --url https://api.loadster.com/mcp
 codex mcp login loadster
 ```
 
-Or with an MCP token in `~/.codex/config.toml`:
+Or with a personal access token in `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.loadster]
@@ -131,7 +133,7 @@ connection when Cursor first connects:
 }
 ```
 
-To use an MCP token instead, add `"headers": { "Authorization": "Bearer ${env:LOADSTER_MCP_TOKEN}" }` and set
+To use a personal access token instead, add `"headers": { "Authorization": "Bearer ${env:LOADSTER_MCP_TOKEN}" }` and set
 `LOADSTER_MCP_TOKEN` in the environment before starting Cursor.
 
 ## Connecting VS Code to Loadster
@@ -152,7 +154,7 @@ Or run **MCP: Add Server** from the Command Palette, or add it to `.vscode/mcp.j
 }
 ```
 
-To use an MCP token, declare a `promptString` input with `"password": true` and reference it in an
+To use a personal access token, declare a `promptString` input with `"password": true` and reference it in an
 `Authorization` header. The [manual](https://loadster.com/manual/mcp/#connecting-vs-code-to-loadster) has the
 complete example.
 

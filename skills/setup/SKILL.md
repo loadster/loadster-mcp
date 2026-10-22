@@ -39,7 +39,7 @@ Without the plugin, add the server directly and Claude Code will walk them throu
 claude mcp add --transport http loadster https://api.loadster.com/mcp
 ```
 
-Or with an MCP token, for headless use:
+Or with a personal access token, for headless use:
 
 ```bash
 claude mcp add --transport http loadster https://api.loadster.com/mcp --header "Authorization: Bearer YOUR_TOKEN"
@@ -76,7 +76,7 @@ same server in `.cursor/mcp.json`, or in `~/.cursor/mcp.json` for every project,
 To use a token instead, add the README's `Authorization` header (`Bearer ${env:LOADSTER_MCP_TOKEN}`) and set
 `LOADSTER_MCP_TOKEN` before starting Cursor. Never ask them to paste the token into the chat.
 
-## MCP tokens
+## Personal access tokens
 
 Only for headless use, CI, or a client where OAuth isn't possible. Tell the user to create a token in the Loadster
 dashboard under **Settings → API & MCP → Personal Access Tokens** and copy it immediately (it's shown once). The
