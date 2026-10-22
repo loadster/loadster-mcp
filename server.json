@@ -4,7 +4,7 @@
   "title": "Loadster",
   "description": "Load testing and synthetic monitoring platform: test with Playwright, Browser Bot, or Protocol Bots.",
   "version": "1.4.0",
-  "websiteUrl": "https://loadster.com/manual/ai-agents/",
+  "websiteUrl": "https://loadster.com/manual/mcp/",
   "repository": {
     "url": "https://github.com/loadster/loadster-mcp",
     "source": "github"

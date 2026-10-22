@@ -79,16 +79,16 @@ To use a token instead, add the README's `Authorization` header (`Bearer ${env:L
 ## MCP tokens
 
 Only for headless use, CI, or a client where OAuth isn't possible. Tell the user to create a token in the Loadster
-dashboard under **Settings → AI Agents → MCP Tokens** and copy it immediately (it's shown once). The README has
-the snippet for each client. Never ask the user to paste a token into the conversation, and never write a token
-into a file that will be committed.
+dashboard under **Settings → API & MCP → Personal Access Tokens** and copy it immediately (it's shown once). The
+README has the snippet for each client. Never ask the user to paste a token into the conversation, and never write a
+token into a file that will be committed.
 
 ## Troubleshooting
 
 - **Stale or missing tools after a change:** repeat the section for their client. In Claude Code that is `/mcp`
   or a restart. In ChatGPT, start a new conversation after reconnecting. In Codex, start a new session.
 - **Wrong team's projects:** the user has to disconnect and reconnect, choosing the right team during OAuth.
-- **Still stuck:** point them at https://loadster.com/manual/ai-agents/ or help@loadster.com.
+- **Still stuck:** point them at https://loadster.com/manual/mcp/ or help@loadster.com.
 
 ## Rules
 

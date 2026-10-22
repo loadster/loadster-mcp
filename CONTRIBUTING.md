@@ -3,7 +3,7 @@
 Thanks for helping keep the Loadster MCP setup guides accurate. Client apps change their MCP configuration often, so
 the most useful contributions are corrections to snippets that no longer work.
 
-- The [AI Agents chapter of the Loadster manual](https://loadster.com/manual/ai-agents/) is the source of truth for
+- The [AI Assistants & MCP chapter of the Loadster manual](https://loadster.com/manual/mcp/) is the source of truth for
   client setup. If a snippet here disagrees with the manual, the manual wins; please mention the discrepancy in
   your pull request so both get fixed.
 - Keep snippets minimal and copy-pasteable, with `YOUR_TOKEN` as the placeholder for MCP tokens.

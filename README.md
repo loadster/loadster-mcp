@@ -10,8 +10,8 @@ plugin, and the metadata behind Loadster's listings in MCP directories. The serv
 `https://api.loadster.com/mcp`, and its source is not published here. Loadster is also an official plugin in the
 [ChatGPT and Codex plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6aa2109570b0819194170aae3449f6fb).
 
-The maintained, full-length guide is the [AI Agents chapter of the Loadster manual](https://loadster.com/manual/ai-agents/).
-This README is the short version.
+The maintained, full-length guide is the
+[AI Assistants & MCP chapter of the Loadster manual](https://loadster.com/manual/mcp/). This README is the short version.
 
 ## The Loadster MCP endpoint
 
@@ -23,13 +23,13 @@ This README is the short version.
 | Registry name | `com.loadster/loadster-mcp` |
 
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
-connection in your browser, and you can review or revoke connected agents on the **AI Agents** page in your Loadster
+connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your Loadster
 settings.
 
 **MCP tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. Create one in the Loadster
-dashboard under **Settings → AI Agents → MCP Tokens**, copy it right away (it's only shown once), and send it as
-`Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team where you created it, so treat it like a
-password.
+dashboard under **Settings → API & MCP → Personal Access Tokens**, copy it right away (it's only shown once), and
+send it as `Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team where you created it, so treat it
+like a password.
 
 ## Connecting Claude Code to Loadster
 
@@ -153,7 +153,7 @@ Or run **MCP: Add Server** from the Command Palette, or add it to `.vscode/mcp.j
 ```
 
 To use an MCP token, declare a `promptString` input with `"password": true` and reference it in an
-`Authorization` header. The [manual](https://loadster.com/manual/ai-agents/#connecting-vs-code-to-loadster) has the
+`Authorization` header. The [manual](https://loadster.com/manual/mcp/#connecting-vs-code-to-loadster) has the
 complete example.
 
 ## Connecting other MCP clients to Loadster
