@@ -16,7 +16,7 @@
       "author": {
         "name": "Loadster"
       },
-      "homepage": "https://loadster.com/manual/ai-agents/",
+      "homepage": "https://loadster.com/manual/mcp/",
       "repository": "https://github.com/loadster/loadster-mcp",
       "license": "MIT",
       "category": "testing",
