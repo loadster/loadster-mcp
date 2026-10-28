@@ -25,7 +25,9 @@ This README is the short version.
 
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
 connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your Loadster
-settings.
+settings. The approval page leads with the web address Loadster can verify for the app, so check that it's one you
+expect before you approve, and **Read only** is selected to start with. Changing or resetting your Loadster password
+disconnects every OAuth-connected agent, so reconnect each one afterward. Personal access tokens keep working.
 
 **Personal access tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. The same kind of
 token also works for calling the [Loadster REST API](https://loadster.com/manual/rest-api/) directly. Create one in
@@ -204,12 +206,16 @@ clients that honor them can prompt before writes and deletes.
 - **The agent acts in your account.** It edits the same scripts, scenarios, datasets, and monitors your team sees.
   Script changes create revisions you can restore, but it's still a good idea to review proposed changes and keep
   experiments in their own project.
+- **Pages under test can talk to your agent.** Response bodies, page HTML, console output, logs, screenshots, and
+  monitor messages come from the site you're testing, and anyone who can put text there can put instructions there.
+  Loadster marks that content as untrusted data and tells agents not to follow instructions inside it, but agents can
+  still be misled, so a read-only connection is safer when an agent only needs to analyze results.
 - **Only test what's yours.** Point scripts only at systems you own or are authorized to test. Playing a script runs
   a single bot, but it's your responsibility either way.
 - **Scope your access.** Use one token per agent or machine, name them clearly, and revoke any you no longer use.
-  If an agent only needs to read, choose **Read only** instead of **Full access** when you approve the OAuth
-  connection (the `mcp:read` scope), or check **Read only** when you create a token. It can then use only the tools
-  that read, and can't change anything or play scripts. Review OAuth connections on the **API & MCP** page in your
+  If an agent only needs to read, keep **Read only** (selected to start with) instead of choosing **Full access** when
+  you approve the OAuth connection (the `mcp:read` scope), or check **Read only** when you create a token. It can then
+  use only the tools that read, and can't change anything or play scripts. Review OAuth connections on the **API & MCP** page in your
   Loadster settings. See [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
 
 ## Support
