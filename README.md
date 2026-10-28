@@ -194,6 +194,10 @@ is a Read, Write, or Sensitive write.
 | Monitoring | `list_monitoring_locations`, `list_monitors`, `get_monitor`, `create_monitor`, `update_monitor`, `disable_monitor`, `delete_monitor`, `list_monitor_cycles`, `get_monitor_cycle_detail`, `get_monitoring_summary`, `list_incidents`, `get_incident` |
 | Feedback | `submit_feedback` |
 
+Scripts, scenarios, datasets, and monitors can carry tags. The list tools report each item's tag names, and the
+create and update tools take a `tags` list. Tags are shared across your team, so agents reuse the names you already
+have and create a new tag only when you ask for one.
+
 Some actions are intentionally left to humans. An agent cannot launch or stop a full load test, enable a monitor,
 manage notification policies or maintenance windows, or administer your team, billing, or Fuel. It gets everything
 ready and hands off so you push the launch button.
