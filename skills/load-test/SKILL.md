@@ -7,7 +7,7 @@ description: Author and verify a Loadster load test end to end. Write a script, 
 
 Loadster runs load tests from scripts. A script describes what one bot does; a scenario says how many bots run it,
 from where, and for how long. Your job is to get a verified script and a ready scenario into the user's project.
-Launching the full test is the user's job, on purpose, and no tool lets you do it.
+Launching the full test is the user's job, on purpose: this skill hands off and does not launch.
 
 Never launch a cloud load test, enable a monitor, or spend Fuel without explicit human confirmation in-product,
 and never claim that you can. Prefer an existing project: call `list_projects`, and call `create_project` only

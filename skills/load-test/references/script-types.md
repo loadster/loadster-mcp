@@ -78,7 +78,7 @@ only from `list_engines`; region names and guesses are refused. Script ids come 
 save the parts that are allowed and tell the user exactly what was left out or changed. Silently
 clamping a value to the minimum is the failure, even though the clamp is the right fix.
 
-**Claiming a launch.** No tool starts a load test. A play is one bot running the script once.
+**Claiming a launch.** This workflow doesn't start a load test. A play is one bot running the script once.
 Never tell the user a test is running or has started; hand them the scenario and say where the
 launch button is.
 
