@@ -200,16 +200,17 @@ Scripts, scenarios, datasets, and monitors can carry tags. The list tools report
 create and update tools take a `tags` list. Tags are shared across your team, so agents reuse the names you already
 have and create a new tag only when you ask for one.
 
-Updating a script, scenario, monitor, or dataset changes only the fields the agent sends and keeps the rest. The load
-test tools take `loadTestId` and scenario bot groups take `engineId`; the older names `testId` and `loadEngineId`
-still work in 2.0 and will be removed in the next major version.
+Updating a script, scenario, monitor, or dataset changes only the fields the agent sends and keeps the rest. A list
+that's sent, such as a scenario's bot groups or a dataset's rows, replaces the stored list rather than merging into
+it. The load test tools take `loadTestId` and scenario bot groups take `engineId`; the older names `testId` and
+`loadEngineId` still work in 2.0 and will be removed in the next major version.
 
 The tools an agent sees depend on the access level you grant. **Read only** sees the tools that read, **Read and
 edit** adds the tools that create, change, delete, and play scripts, and **Read, edit and execute** adds
 `launch_load_test`, `stop_load_test`, and `enable_monitor`. Launching a load test and enabling a monitor send real
-traffic and spend Fuel, so the server tells the agent to give you the estimated cost and get your go-ahead before
-either. At the other two levels the agent gets everything ready and hands off so you push the launch button in the
-dashboard.
+traffic and spend Fuel, so the server tells the agent to give you the estimated Fuel before a launch, and to get your
+go-ahead before either. At the other two levels the agent gets everything ready and hands off so you push the launch
+button in the dashboard.
 
 Some actions are always left to humans. An agent cannot manage notification policies or maintenance windows, or
 administer your team, billing, or Fuel.
