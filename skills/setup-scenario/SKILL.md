@@ -1,6 +1,6 @@
 ---
 name: setup-scenario
-description: Wire bot groups for a first Loadster load test scenario and report the Fuel estimate and launch blockers. Use when the user wants a first scenario or to shape how a script runs under load. Does not launch the test.
+description: Wire bot groups for a first Loadster load test scenario and report any Fuel estimate and launch blockers. Use when the user wants a first scenario or to shape how a script runs under load. Does not launch the test.
 ---
 
 # Shaping a first load test scenario
@@ -51,9 +51,9 @@ scenario was saved, change it with `update_scenario` rather than creating a seco
 ## Report the estimate and the blockers
 
 Report the Fuel estimate and the launch blockers that `create_scenario` returns, and give the user the dashboard
-link from the summary. Do not calculate a Fuel number the summary didn't return. The estimate is reported even when
-the team's plan covers the test, so present it as what the test would use on Fuel, not as a charge. With no launch
-blockers, an estimate above the Fuel balance means the plan covers it, which is normal. A launch blocker means the
+link from the summary. Do not calculate a Fuel number the summary didn't return. The estimate (`estimatedFuel` to
+`estimatedFuelMax`) is the one the dashboard shows, and it appears only when the team's plan doesn't cover the
+test. No estimate means the plan covers it, which is normal. A launch blocker means the
 user could not launch this scenario as it stands. It does not undo the save. Tell them about the blocker. Do not
 rewrite the scenario to avoid it.
 
@@ -64,5 +64,5 @@ the test has run, `results` covers the report.
 ## Prompt for Cursor and Codex
 
 ```text
-Set up my first Loadster load test scenario. Ask which project and script to use, how many bots, the ramp, the duration, and the region. Report the Fuel estimate and any launch blockers. Do not launch the test or spend Fuel.
+Set up my first Loadster load test scenario. Ask which project and script to use, how many bots, the ramp, the duration, and the region. Report any Fuel estimate and launch blockers. Do not launch the test or spend Fuel.
 ```

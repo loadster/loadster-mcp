@@ -82,10 +82,9 @@ launch:
 
 1. Read the scenario with `get_scenario`. Tell the user what will run (the scenario, its bot groups, bots, ramp,
    and duration). A scenario with launch blockers can't launch; report them. A test runs on the team's plan when
-   it fits and on Fuel when it doesn't, and `estimatedFuel` is reported either way, so it is what the test would
-   use on Fuel, not a charge. With no launch blockers, an `estimatedFuel` above the `fuelBalance` means the plan
-   covers the test: say so, and don't treat the low balance as a problem. Otherwise give both numbers and say the
-   test uses the plan if it fits and Fuel if it doesn't.
+   it fits and burns Fuel when it doesn't. With no `estimatedFuel`, the plan covers the test: say so, and don't
+   treat it as missing or the balance as a problem. Otherwise give the estimate (`estimatedFuel` to
+   `estimatedFuelMax`, as the dashboard shows it) and the `fuelBalance`.
 2. Call `launch_load_test` with `projectId` and `scenarioId` only after the user says yes to this launch. If the
    call times out, check `list_load_tests` before launching again.
 3. Follow the test with `get_load_test_status`, no more often than every 10 seconds, and tell the user how it's

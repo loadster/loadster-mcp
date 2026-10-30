@@ -116,7 +116,7 @@ When `list_projects` succeeds, point the user at the skill for what they want to
 - **`setup-script`** creates or imports a first Protocol, Browser Bot, or Playwright script, then validates it,
   plays it, and checks the play status.
 - **`setup-scenario`** wires the bot groups for a first load test scenario. The shape is the script, the bots,
-  the ramp, the duration, and the region. It reports the Fuel estimate and the launch blockers.
+  the ramp, the duration, and the region. It reports any Fuel estimate and the launch blockers.
 - **`setup-monitor`** attaches a script to a synthetic monitor definition.
 
 `load-test` is the longer path that builds a script and a scenario together. `results` is for a finished load
