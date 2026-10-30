@@ -81,9 +81,10 @@ Summarize what you built: the script, what it does, what the play showed, and th
 launch:
 
 1. Read the scenario with `get_scenario`. Tell the user what will run (the scenario, its bot groups, bots, ramp,
-   and duration). A scenario with launch blockers can't launch; report them. A test runs on the team's plan when
-   it fits and burns Fuel when it doesn't. With no `estimatedFuel`, the plan covers the test: say so, and don't
-   treat it as missing or the balance as a problem. Otherwise give the estimate (`estimatedFuel` to
+   and duration). A scenario with launch blockers can't launch; report them. With no `estimatedFuel`, the
+   plan covers the test and the launch runs on the plan only: say so, and don't treat the missing estimate or the
+   balance as a problem. If the plan can't run it right now, the launch is refused with the reason and no Fuel is
+   burned; pass that on. With an estimate, the launch burns Fuel: give the estimate (`estimatedFuel` to
    `estimatedFuelMax`, as the dashboard shows it) and the `fuelBalance`.
 2. Call `launch_load_test` with `projectId` and `scenarioId` only after the user says yes to this launch. If the
    call times out, check `list_load_tests` before launching again.

@@ -53,7 +53,7 @@ scenario was saved, change it with `update_scenario` rather than creating a seco
 Report the Fuel estimate and the launch blockers that `create_scenario` returns, and give the user the dashboard
 link from the summary. Do not calculate a Fuel number the summary didn't return. The estimate (`estimatedFuel` to
 `estimatedFuelMax`) is the one the dashboard shows, and it appears only when the team's plan doesn't cover the
-test. No estimate means the plan covers it, which is normal. A launch blocker means the
+test, so a launch would burn Fuel. No estimate means the plan covers it, which is normal. A launch blocker means the
 user could not launch this scenario as it stands. It does not undo the save. Tell them about the blocker. Do not
 rewrite the scenario to avoid it.
 
