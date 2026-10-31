@@ -24,16 +24,18 @@ This README is the short version.
 | Registry name | `com.loadster/loadster-mcp` |
 
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
-connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your Loadster
-settings. The approval page leads with the web address Loadster can verify for the app, so check that it's one you
-expect before you approve, and **Read only** is selected to start with. Changing or resetting your Loadster password
-disconnects every OAuth-connected agent, so reconnect each one afterward. Personal access tokens keep working.
+connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your
+Loadster settings. The approval page leads with the web address Loadster can verify for the app, so check that it's
+one you expect before you approve. You also choose an access level there: **Read** (selected to start with),
+**Read+Write**, or **Read+Write+Execute**. To change it later, revoke the connection and connect again. Changing or
+resetting your Loadster password disconnects every OAuth-connected agent, so reconnect each one afterward. Personal
+access tokens keep working.
 
 **Personal access tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. The same kind of
 token also works for calling the [Loadster REST API](https://loadster.com/manual/rest-api/) directly. Create one in
-the Loadster dashboard under **Settings → API & MCP → Personal Access Tokens**, copy it right away (it's only shown
-once), and send it as `Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team where you created it, so
-treat it like a password.
+the Loadster dashboard under **Settings → API & MCP → Personal Access Tokens**, choose its access level, copy it right
+away (it's only shown once), and send it as `Authorization: Bearer YOUR_TOKEN`. A token acts as you within the team
+where you created it, so treat it like a password.
 
 ## Connecting Claude Code to Loadster
 
@@ -179,10 +181,11 @@ Leave out the `--header` arguments to have it run the OAuth flow instead of usin
 
 ## What an agent can do with Loadster
 
-The server exposes most of the Loadster dashboard. Clients fetch the live tool list when they connect, so this table
-is a map of the surface rather than the source of truth. The [MCP tool reference](https://loadster.com/manual/mcp-tools/)
-in the Loadster manual is generated from the tool definitions themselves, with each tool's parameters and whether it
-is a Read, Write, or Sensitive write.
+The server exposes most of the Loadster dashboard. Clients fetch the live tool list when they connect, so this
+table is a map of the surface rather than the source of truth. The
+[MCP tool reference](https://loadster.com/manual/mcp-tools/) in the Loadster manual is generated from the tool
+definitions themselves, with each tool's parameters and whether it is a Read, Write, Sensitive Write, or Execute
+tool.
 
 | Group | Tools |
 | --- | --- |
@@ -190,17 +193,31 @@ is a Read, Write, or Sensitive write.
 | Scripts | `list_scripts`, `get_script`, `create_script`, `update_script`, `duplicate_script`, `delete_script`, `import_script`, `validate_script`, `play_script`, `get_play_status`, `stop_script`, `get_step_detail`, `get_screenshot`, `list_script_revisions`, `get_script_revision`, `restore_script_revision`, `list_script_assets`, `get_script_asset`, `put_script_asset`, `delete_script_asset` |
 | Datasets | `list_datasets`, `get_dataset`, `create_dataset`, `update_dataset`, `append_dataset_rows`, `delete_dataset` |
 | Scenarios and engines | `list_scenarios`, `get_scenario`, `create_scenario`, `update_scenario`, `delete_scenario`, `list_engines` |
-| Load test reports | `list_load_tests`, `get_load_test_report`, `update_load_test_notes` |
-| Monitoring | `list_monitoring_locations`, `list_monitors`, `get_monitor`, `create_monitor`, `update_monitor`, `disable_monitor`, `delete_monitor`, `list_monitor_cycles`, `get_monitor_cycle_detail`, `get_monitoring_summary`, `list_incidents`, `get_incident` |
+| Load tests and reports | `launch_load_test`, `stop_load_test`, `get_load_test_status`, `list_load_tests`, `get_load_test_report`, `get_load_test_url_timings`, `update_load_test_notes` |
+| Monitoring | `list_monitoring_locations`, `list_monitors`, `get_monitor`, `create_monitor`, `update_monitor`, `enable_monitor`, `disable_monitor`, `delete_monitor`, `list_monitor_cycles`, `get_monitor_cycle_detail`, `get_monitoring_summary`, `list_incidents`, `get_incident` |
 | Feedback | `submit_feedback` |
 
 Scripts, scenarios, datasets, and monitors can carry tags. The list tools report each item's tag names, and the
 create and update tools take a `tags` list. Tags are shared across your team, so agents reuse the names you already
 have and create a new tag only when you ask for one.
 
-Some actions are intentionally left to humans. An agent cannot launch or stop a full load test, enable a monitor,
-manage notification policies or maintenance windows, or administer your team, billing, or Fuel. It gets everything
-ready and hands off so you push the launch button.
+Updating a script, scenario, monitor, or dataset changes only the fields the agent sends and keeps the rest. A list
+that's sent, such as a scenario's bot groups or a dataset's rows, replaces the stored list rather than merging into
+it. The load test tools take `loadTestId` and scenario bot groups take `engineId`; the older names `testId` and
+`loadEngineId` still work in 2.0 and will be removed in the next major version.
+
+The tools an agent sees depend on the access level you grant. **Read** sees the tools that read, **Read+Write**
+adds the tools that create, change, delete, and play scripts, and **Read+Write+Execute** adds `launch_load_test`,
+`stop_load_test`, and `enable_monitor`. Launching a load test and enabling a monitor send real traffic and burn
+Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before either. Before a
+launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate range the dashboard
+shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an estimate runs entirely on
+Fuel. If your plan can't run a test right now, the agent's launch is refused and you can launch it on Fuel from the
+dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and use Fuel beyond them. At
+the other two levels the agent gets everything ready and hands off so you push the launch button in the dashboard.
+
+Some actions are always left to humans. An agent cannot manage notification policies or maintenance windows, or
+administer your team, billing, or Fuel.
 
 Every tool carries MCP annotations (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`), so
 clients that honor them can prompt before writes and deletes.
@@ -217,10 +234,12 @@ clients that honor them can prompt before writes and deletes.
 - **Only test what's yours.** Point scripts only at systems you own or are authorized to test. Playing a script runs
   a single bot, but it's your responsibility either way.
 - **Scope your access.** Use one token per agent or machine, name them clearly, and revoke any you no longer use.
-  If an agent only needs to read, keep **Read only** (selected to start with) instead of choosing **Full access** when
-  you approve the OAuth connection (the `mcp:read` scope), or check **Read only** when you create a token. It can then
-  use only the tools that read, and can't change anything or play scripts. Review OAuth connections on the **API & MCP** page in your
-  Loadster settings. See [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
+  Grant the lowest access level the agent needs. If it only needs to read, keep **Read** (selected to start with)
+  when you approve the OAuth connection, or choose **Read** when you create a token. It can then use only the tools
+  that read, and can't change anything or play scripts. Choose **Read+Write+Execute** only for an agent you want
+  launching load tests or enabling monitors. Review OAuth connections on the **API & MCP** page in your Loadster
+  settings. See
+  [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
 
 ## Support
 

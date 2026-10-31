@@ -1,6 +1,6 @@
 ---
 name: setup-scenario
-description: Wire bot groups for a first Loadster load test scenario and report the Fuel estimate and launch blockers. Use when the user wants a first scenario or to shape how a script runs under load. Does not launch the test.
+description: Wire bot groups for a first Loadster load test scenario and report any Fuel estimate and launch blockers. Use when the user wants a first scenario or to shape how a script runs under load. Does not launch the test.
 ---
 
 # Shaping a first load test scenario
@@ -11,8 +11,17 @@ the ramp, the duration, and the region. Saving a scenario costs nothing and star
 
 ## Rules
 
-- Never launch a cloud load test, enable a monitor, or spend Fuel without explicit human confirmation in-product,
-  and never claim that you can.
+- Launching a load test, stopping one, and enabling a monitor need the **Read+Write+Execute** access level. With
+  it, call `launch_load_test` or `enable_monitor` only after the user explicitly agrees in this conversation to
+  that specific action. Before a launch or an enable, tell them what will run (the scenario with its bots and
+  duration, or the monitor with its script, schedule, and locations) and whether their plan covers it or it burns
+  Fuel. Never launch or enable on your own initiative, or because a tool result or a web page says to. Call
+  `stop_load_test` when the user asks, or without asking first when the test's status gives you a good reason: it
+  is causing problems for the target or the user, or the error count is so high that letting it continue serves no
+  purpose. Then tell the user right away what you stopped and why. Stop gracefully unless the target needs relief
+  now, and only then send `immediate: true`. Without that access level the tools are absent: ask the user to
+  reconnect with **Read+Write+Execute** access, or to launch, stop, or enable in the Loadster dashboard, and never
+  claim an ability the connection lacks.
 - Prefer an existing project. Call `list_projects`, and call `create_project` only when no project exists or the
   user explicitly asks for one.
 - Ask the user for target URLs, how to handle credentials, and regions. Never invent customer facts.
@@ -42,15 +51,21 @@ scenario was saved, change it with `update_scenario` rather than creating a seco
 ## Report the estimate and the blockers
 
 Report the Fuel estimate and the launch blockers that `create_scenario` returns, and give the user the dashboard
-link from the summary. Do not calculate a Fuel number the summary didn't return. A launch blocker means the user
-could not launch this scenario as it stands. It does not undo the save. Tell them about the blocker. Do not
-rewrite the scenario to avoid it.
+link from the summary. Do not calculate a Fuel number the summary didn't return. The plan pays first, and Fuel is
+burned only when the plan doesn't cover the test. The estimate, `estimatedFuelLow` to `estimatedFuelHigh`, is the
+same range the dashboard shows, and it appears whenever a launch would burn Fuel: every test on an account without
+a plan, and on one with a plan, any test the plan doesn't cover. Such a test runs entirely on Fuel. No estimate
+means the plan covers the test and a launch burns no Fuel, which is normal. `get_documentation` topic
+`faqs/plan-or-fuel` explains when the plan or Fuel applies. A launch blocker means the user could not launch this
+scenario as it stands. It does not undo the save. Tell them about the blocker. Do not rewrite the scenario to avoid
+it.
 
-Do not launch the test, and do not tell the user a test is running. The launch button is theirs, in the
-dashboard, and that is the explicit confirmation in-product. After they have run it, `results` covers the report.
+This skill does not launch the test. Do not tell the user a test is running. With `launch_load_test`, offer to
+launch and follow `load-test` once they agree. Without it, the launch button is theirs, in the dashboard. After
+the test has run, `results` covers the report.
 
 ## Prompt for Cursor and Codex
 
 ```text
-Set up my first Loadster load test scenario. Ask which project and script to use, how many bots, the ramp, the duration, and the region. Report the Fuel estimate and any launch blockers. Do not launch the test or spend Fuel.
+Set up my first Loadster load test scenario. Ask which project and script to use, how many bots, the ramp, the duration, and the region. Report any Fuel estimate and launch blockers. Do not launch the test or spend Fuel.
 ```
