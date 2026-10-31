@@ -26,8 +26,8 @@ This README is the short version.
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
 connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your Loadster
 settings. The approval page leads with the web address Loadster can verify for the app, so check that it's one you
-expect before you approve. You also choose an access level there: **Read only** (selected to start with), **Read and
-edit**, or **Read, edit and execute**. To change it later, revoke the connection and connect again. Changing or
+expect before you approve. You also choose an access level there: **Read** (selected to start with),
+**Read+Write**, or **Read+Write+Execute**. To change it later, revoke the connection and connect again. Changing or
 resetting your Loadster password disconnects every OAuth-connected agent, so reconnect each one afterward. Personal
 access tokens keep working.
 
@@ -184,7 +184,7 @@ Leave out the `--header` arguments to have it run the OAuth flow instead of usin
 The server exposes most of the Loadster dashboard. Clients fetch the live tool list when they connect, so this table
 is a map of the surface rather than the source of truth. The [MCP tool reference](https://loadster.com/manual/mcp-tools/)
 in the Loadster manual is generated from the tool definitions themselves, with each tool's parameters and whether it
-is a Read, Write, Sensitive write, or Execute tool.
+is a Read, Write, Sensitive Write, or Execute tool.
 
 | Group | Tools |
 | --- | --- |
@@ -205,8 +205,8 @@ that's sent, such as a scenario's bot groups or a dataset's rows, replaces the s
 it. The load test tools take `loadTestId` and scenario bot groups take `engineId`; the older names `testId` and
 `loadEngineId` still work in 2.0 and will be removed in the next major version.
 
-The tools an agent sees depend on the access level you grant. **Read only** sees the tools that read, **Read and
-edit** adds the tools that create, change, delete, and play scripts, and **Read, edit and execute** adds
+The tools an agent sees depend on the access level you grant. **Read** sees the tools that read, **Read+Write**
+adds the tools that create, change, delete, and play scripts, and **Read+Write+Execute** adds
 `launch_load_test`, `stop_load_test`, and `enable_monitor`. Launching a load test and enabling a monitor send real
 traffic and burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before
 either. Before a launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate
@@ -234,9 +234,9 @@ clients that honor them can prompt before writes and deletes.
 - **Only test what's yours.** Point scripts only at systems you own or are authorized to test. Playing a script runs
   a single bot, but it's your responsibility either way.
 - **Scope your access.** Use one token per agent or machine, name them clearly, and revoke any you no longer use.
-  Grant the lowest access level the agent needs. If it only needs to read, keep **Read only** (selected to start with)
-  when you approve the OAuth connection, or choose **Read only** when you create a token. It can then use only the
-  tools that read, and can't change anything or play scripts. Choose **Read, edit and execute** only for an agent you
+  Grant the lowest access level the agent needs. If it only needs to read, keep **Read** (selected to start with)
+  when you approve the OAuth connection, or choose **Read** when you create a token. It can then use only the
+  tools that read, and can't change anything or play scripts. Choose **Read+Write+Execute** only for an agent you
   want launching load tests or enabling monitors. Review OAuth connections on the **API & MCP** page in your
   Loadster settings. See [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
 

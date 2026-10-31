@@ -10,7 +10,7 @@ and saves the definition. It does not start the monitor.
 
 ## Rules
 
-- Launching a load test, stopping one, and enabling a monitor need the **Read, edit and execute** access level.
+- Launching a load test, stopping one, and enabling a monitor need the **Read+Write+Execute** access level.
   With it, call `launch_load_test` or `enable_monitor` only after the user explicitly agrees in this conversation
   to that specific action. Before a launch or an enable, tell them what will run (the scenario with its bots and
   duration, or the monitor with its script, schedule, and locations) and whether their plan covers it or it burns
@@ -19,7 +19,7 @@ and saves the definition. It does not start the monitor.
   is causing problems for the target or the user, or the error count is so high that letting it continue serves no
   purpose. Then tell the user right away what you stopped and why. Stop gracefully unless the target needs relief
   now, and only then send `immediate: true`. Without that access level the tools are absent: ask the user to
-  reconnect with **Read, edit and execute** access, or to launch, stop, or enable in the Loadster dashboard, and
+  reconnect with **Read+Write+Execute** access, or to launch, stop, or enable in the Loadster dashboard, and
   never claim an ability the connection lacks.
 - Prefer an existing project. Call `list_projects`, and call `create_project` only when no project exists or the
   user explicitly asks for one.
