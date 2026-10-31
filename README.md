@@ -208,11 +208,13 @@ it. The load test tools take `loadTestId` and scenario bot groups take `engineId
 The tools an agent sees depend on the access level you grant. **Read only** sees the tools that read, **Read and
 edit** adds the tools that create, change, delete, and play scripts, and **Read, edit and execute** adds
 `launch_load_test`, `stop_load_test`, and `enable_monitor`. Launching a load test and enabling a monitor send real
-traffic and burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before either.
-Before a launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate range the
-dashboard shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an estimate runs
-entirely on Fuel. At
-the other two levels the agent gets everything ready and hands off so you push the launch button in the dashboard.
+traffic and burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before
+either. Before a launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate
+range the dashboard shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an estimate
+runs entirely on Fuel. If your plan can't run a test right now, the agent's launch is refused and you can launch it
+on Fuel from the dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and use Fuel
+beyond them. At the other two levels the agent gets everything ready and hands off so you push the launch button in
+the dashboard.
 
 Some actions are always left to humans. An agent cannot manage notification policies or maintenance windows, or
 administer your team, billing, or Fuel.
