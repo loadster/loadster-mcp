@@ -18,7 +18,7 @@ play is one bot running the script once. It is not a load test.
   `stop_load_test` when the user asks, or without asking first when the test's status gives you a good reason: it
   is causing problems for the target or the user, or the error count is so high that letting it continue serves no
   purpose. Then tell the user right away what you stopped and why. Stop gracefully unless the target needs relief
-  now, and only then send `immediate: true`. Without that access level the tools are absent: ask the user to
+  now, and only then send `immediate: true`. Without that access level a call to them is refused: ask the user to
   reconnect with **Read+Write+Execute** access, or to launch, stop, or enable in the Loadster dashboard, and never
   claim an ability the connection lacks.
 - Prefer an existing project. Call `list_projects`, and call `create_project` only when no project exists or the
@@ -42,8 +42,8 @@ need a starting point. The formats have details you will get wrong from memory.
 ## Pick the project
 
 Call `list_projects` and use the project the user names. Call `create_project` only when the list is empty or the
-user explicitly asks for a new project. Ask what to name it, and do not invent a name. If `create_project` is not
-on the server, ask them to create the project in the dashboard, then call `list_projects` again.
+user explicitly asks for a new project. Ask what to name it, and do not invent a name. If `create_project` is
+refused, ask them to create the project in the dashboard, then call `list_projects` again.
 
 Ask for the target URL and how credentials should be handled before you write a step. Do not invent a host,
 username, password, API key, or token. If they do not want credentials stored in the project, say what the script

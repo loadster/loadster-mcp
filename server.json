@@ -3,8 +3,15 @@
   "name": "com.loadster/loadster-mcp",
   "title": "Loadster",
   "description": "Load testing and synthetic monitoring platform: test with Playwright, Browser Bot, or Protocol Bots.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "websiteUrl": "https://loadster.com/manual/mcp/",
+  "icons": [
+    {
+      "src": "https://loadster.com/android-chrome-512x512.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    }
+  ],
   "repository": {
     "url": "https://github.com/loadster/loadster-mcp",
     "source": "github"

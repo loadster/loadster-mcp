@@ -23,6 +23,10 @@ This README is the short version.
 | Authentication | OAuth 2.1 (preferred), or a personal access token in an `Authorization: Bearer` header |
 | Registry name | `com.loadster/loadster-mcp` |
 
+A client can connect and read the tool list without signing in, so it can show what Loadster offers before you have
+an account. Using any tool needs OAuth or a personal access token, and some clients ask you to sign in as soon as you
+add the server.
+
 **OAuth** is the easiest way to connect. Clients that support MCP OAuth send you to Loadster to approve the
 connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your
 Loadster settings. The approval page leads with the web address Loadster can verify for the app, so check that it's
@@ -189,7 +193,7 @@ tool.
 
 | Group | Tools |
 | --- | --- |
-| Projects and documentation | `list_projects`, `create_project`, `get_documentation`, `get_scripting_api`, `get_example`, `list_command_types`, `get_command_schema`, `get_variable_schema` |
+| Projects and documentation | `list_projects`, `create_project`, `update_project`, `get_documentation`, `get_scripting_api`, `get_example`, `list_command_types`, `get_command_schema`, `get_variable_schema` |
 | Scripts | `list_scripts`, `get_script`, `create_script`, `update_script`, `duplicate_script`, `delete_script`, `import_script`, `validate_script`, `play_script`, `get_play_status`, `stop_script`, `get_step_detail`, `get_screenshot`, `list_script_revisions`, `get_script_revision`, `restore_script_revision`, `list_script_assets`, `get_script_asset`, `put_script_asset`, `delete_script_asset` |
 | Datasets | `list_datasets`, `get_dataset`, `create_dataset`, `update_dataset`, `append_dataset_rows`, `delete_dataset` |
 | Scenarios and engines | `list_scenarios`, `get_scenario`, `create_scenario`, `update_scenario`, `delete_scenario`, `list_engines` |
@@ -204,17 +208,19 @@ have and create a new tag only when you ask for one.
 Updating a script, scenario, monitor, or dataset changes only the fields the agent sends and keeps the rest. A list
 that's sent, such as a scenario's bot groups or a dataset's rows, replaces the stored list rather than merging into
 it. The load test tools take `loadTestId` and scenario bot groups take `engineId`; the older names `testId` and
-`loadEngineId` still work in 2.0 and will be removed in the next major version.
+`loadEngineId` still work in 2.x and will be removed in the next major version.
 
-The tools an agent sees depend on the access level you grant. **Read** sees the tools that read, **Read+Write**
-adds the tools that create, change, delete, and play scripts, and **Read+Write+Execute** adds `launch_load_test`,
-`stop_load_test`, and `enable_monitor`. Launching a load test and enabling a monitor send real traffic and burn
-Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before either. Before a
-launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate range the dashboard
-shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an estimate runs entirely on
-Fuel. If your plan can't run a test right now, the agent's launch is refused and you can launch it on Fuel from the
-dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and use Fuel beyond them. At
-the other two levels the agent gets everything ready and hands off so you push the launch button in the dashboard.
+Every connection sees every tool, and the access level you grant decides which ones it can use. **Read** can use the
+tools that read, **Read+Write** adds the tools that create, change, delete, and play scripts, and
+**Read+Write+Execute** adds `launch_load_test`, `stop_load_test`, and `enable_monitor`. A call above the access
+level is refused with a message that names the level the tool needs. Launching a load test and enabling a monitor
+send real traffic and burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead
+before either. Before a launch the agent gives you your balance and, when the test would burn Fuel, the Fuel
+estimate range the dashboard shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an
+estimate runs entirely on Fuel. If your plan can't run a test right now, the agent's launch is refused and you can
+launch it on Fuel from the dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and
+use Fuel beyond them. At the other two levels the agent gets everything ready and hands off so you push the launch
+button in the dashboard.
 
 Some actions are always left to humans. An agent cannot manage notification policies or maintenance windows, or
 administer your team, billing, or Fuel.
