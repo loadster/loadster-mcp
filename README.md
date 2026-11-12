@@ -31,9 +31,9 @@ add the server.
 connection in your browser, and you can review or revoke connected agents on the **API & MCP** page in your
 Loadster settings. The approval page leads with the web address Loadster can verify for the app, so check that it's
 one you expect before you approve. You also choose an access level there: **Read** (selected to start with),
-**Read+Write**, or **Read+Write+Execute**. To change it later, revoke the connection and connect again. Changing or
-resetting your Loadster password disconnects every OAuth-connected agent, so reconnect each one afterward. Personal
-access tokens keep working.
+**Edit**, or **Launch**. To change it later, revoke the connection and connect again. Changing or resetting your
+Loadster password disconnects every OAuth-connected agent, so reconnect each one afterward. Personal access tokens
+keep working.
 
 **Personal access tokens** are for clients that can't do OAuth, and for CI jobs and scripted agents. The same kind of
 token also works for calling the [Loadster REST API](https://loadster.com/manual/rest-api/) directly. Create one in
@@ -188,7 +188,7 @@ Leave out the `--header` arguments to have it run the OAuth flow instead of usin
 The server exposes most of the Loadster dashboard. Clients fetch the live tool list when they connect, so this
 table is a map of the surface rather than the source of truth. The
 [MCP tool reference](https://loadster.com/manual/mcp-tools/) in the Loadster manual is generated from the tool
-definitions themselves, with each tool's parameters and whether it is a Read, Write, Sensitive Write, or Execute
+definitions themselves, with each tool's parameters and whether it is a Read, Write, Sensitive Write, or Launch
 tool.
 
 | Group | Tools |
@@ -211,16 +211,16 @@ it. The load test tools take `loadTestId` and scenario bot groups take `engineId
 `loadEngineId` still work in 2.x and will be removed in the next major version.
 
 Every connection sees every tool, and the access level you grant decides which ones it can use. **Read** can use the
-tools that read, **Read+Write** adds the tools that create, change, delete, and play scripts, and
-**Read+Write+Execute** adds `launch_load_test`, `stop_load_test`, and `enable_monitor`. A call above the access
-level is refused with a message that names the level the tool needs. Launching a load test and enabling a monitor
-send real traffic and burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead
-before either. Before a launch the agent gives you your balance and, when the test would burn Fuel, the Fuel
-estimate range the dashboard shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an
-estimate runs entirely on Fuel. If your plan can't run a test right now, the agent's launch is refused and you can
-launch it on Fuel from the dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and
-use Fuel beyond them. At the other two levels the agent gets everything ready and hands off so you push the launch
-button in the dashboard.
+tools that read, **Edit** adds the tools that create, change, delete, and play scripts, and **Launch** adds
+`launch_load_test`, `stop_load_test`, `enable_monitor`, and `disable_monitor`, which start or stop what uses Fuel or
+your plan. A call above the access level is refused with a message that names the level the tool needs. The server's
+instructions list which tools each level can use. Launching a load test and enabling a monitor send real traffic and
+burn Fuel unless your plan covers them, so the server tells the agent to get your go-ahead before either. Before a
+launch the agent gives you your balance and, when the test would burn Fuel, the Fuel estimate range the dashboard
+shows. A launch with no estimate runs on your plan and burns no Fuel, and one with an estimate runs entirely on
+Fuel. If your plan can't run a test right now, the agent's launch is refused and you can launch it on Fuel from the
+dashboard. Monitors are covered by a plan that includes monitoring up to its limits, and use Fuel beyond them. At
+the other two levels the agent gets everything ready and hands off so you push the launch button in the dashboard.
 
 Some actions are always left to humans. An agent cannot manage notification policies or maintenance windows, or
 administer your team, billing, or Fuel.
@@ -242,9 +242,9 @@ clients that honor them can prompt before writes and deletes.
 - **Scope your access.** Use one token per agent or machine, name them clearly, and revoke any you no longer use.
   Grant the lowest access level the agent needs. If it only needs to read, keep **Read** (selected to start with)
   when you approve the OAuth connection, or choose **Read** when you create a token. It can then use only the tools
-  that read, and can't change anything or play scripts. Choose **Read+Write+Execute** only for an agent you want
-  launching load tests or enabling monitors. Review OAuth connections on the **API & MCP** page in your Loadster
-  settings. See
+  that read, and can't change anything or play scripts. Choose **Launch** only for an agent you want launching and
+  stopping load tests or enabling and disabling monitors. Review OAuth connections on the **API & MCP** page in your
+  Loadster settings. See
   [How Your Assistant Authenticates](https://loadster.com/manual/mcp/#how-your-assistant-authenticates).
 
 ## Support
