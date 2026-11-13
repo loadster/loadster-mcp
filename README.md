@@ -226,7 +226,8 @@ Some actions are always left to humans. An agent cannot manage notification poli
 administer your team, billing, or Fuel.
 
 Every tool carries MCP annotations (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`), so
-clients that honor them can prompt before writes and deletes.
+clients that honor them can prompt before writes and deletes. `stop_load_test` and `stop_script` are marked
+destructive because a stopped load test or play can't be resumed, so those clients may ask before stopping either.
 
 ## Safety practices for AI load testing
 
