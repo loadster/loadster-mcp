@@ -229,6 +229,9 @@ Every tool carries MCP annotations (`readOnlyHint`, `destructiveHint`, `idempote
 clients that honor them can prompt before writes and deletes. `stop_load_test` and `stop_script` are marked
 destructive because a stopped load test or play can't be resumed, so those clients may ask before stopping either.
 
+Each tool's input schema declares the JSON Schema version it's written in
+(`"$schema": "https://json-schema.org/draft/2020-12/schema"`), and dates in tool results are UTC and end in `Z`.
+
 ## Safety practices for AI load testing
 
 - **The agent acts in your account.** It edits the same scripts, scenarios, datasets, and monitors your team sees.
